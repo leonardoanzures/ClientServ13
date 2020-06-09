@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'r!5l-l9w4su_(xgw1!kaq&o1vbwd-5d%^@chn+r%st0wl6cdzd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['clientserv.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -52,6 +52,15 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'CS.urls'
+
+SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),
+    'DEFAULT_AUTHENTICATION_CLASSES':('rest_framework.authentication.TokenAuthentication',),
+    'DEFAULT_PAGDATION_CLASSES':'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
 
 TEMPLATES = [
     {
@@ -120,8 +129,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-try:
-    from CS.local_settings import*
-except ImportError:
-    pass 
