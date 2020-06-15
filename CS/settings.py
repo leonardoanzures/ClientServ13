@@ -61,12 +61,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'django.contrib.staticfiles',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
-]
-
-MIDDLEWARE_CLASSES = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
+
+#MIDDLEWARE_CLASSES = [
+#    'whitenoise.middleware.WhiteNoiseMiddleware',
+#]
 
 ROOT_URLCONF = 'CS.urls'
 
