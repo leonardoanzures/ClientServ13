@@ -19,7 +19,7 @@ class ExampleList(APIView):
         serializer = Example2Serializers(queryset, many = True)
         return Response(serializer.data)
 
-        def post(self, request, format=None):
+    def post(self, request, format=None):
         serializer = Example2Serializers(data = request.data)
         if serializer.is_valid():
             serializer.save()
