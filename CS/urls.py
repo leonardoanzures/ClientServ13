@@ -39,8 +39,8 @@ schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
     path('admin/', admin.site.urls),
     #url('lnk/', schema_view),
-    url(r'^', schema_view),
     re_path(r'^lkn/v1/login',include('Login.urls')),
     re_path(r'^',include(router.urls)),
+    url(r'^', schema_view),
     
 ]
