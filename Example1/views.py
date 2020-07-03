@@ -35,7 +35,6 @@ class ExampleDetail(APIView):
     
     def get(self, request, id, format=None):
         print("GET Detail")
-        example1 = self.object(id)
+        example1 = self.get_object(id)
         serializer = Example1Serializers(example1)
         return Response(serializer.data)
-        
