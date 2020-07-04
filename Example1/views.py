@@ -39,7 +39,7 @@ class ExampleList(APIView):
 #        serializer = Example1Serializers(example1)
 #        return Response(serializer.data)
 
-class ExampleDetail(APIView):
+"""class ExampleDetail(APIView):
     def get_object(self, id,name):
         try:
             return Example1.objects.get(pk = id)
@@ -54,4 +54,19 @@ class ExampleDetail(APIView):
             return Response(example1)
         else:
             serializer=Example1Serializers(example1)
+            return Response(serializer.data)"""
+
+class ExampleDetail(APIView):
+    def get_object(self,id):
+        try:
+            return Example1.objects.get(pk = id)
+        except Example1.DoesNotExist :
+            return 404
+
+    def get(self,request,id ,format=None):
+        example1 = self.get_object(id)
+        if example1 == 404:
+            return Response(example1)
+        else:
+            serializer = Example1Serializer (example1)
             return Response(serializer.data)
