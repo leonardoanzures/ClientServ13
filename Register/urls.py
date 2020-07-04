@@ -7,5 +7,5 @@ from django.conf.urls import url
 from Register import views
 
 urlpatterns = [
-    re_path(r'',views.SaveRegister.as_view()),
+    re_path(r'^',views.SaveRegister.as_view()),
 ]
