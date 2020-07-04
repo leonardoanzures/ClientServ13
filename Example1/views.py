@@ -36,8 +36,24 @@ class ExampleDetail(APIView):
     def get(self, request, id, format=None):
         print("GET Detail")
         example1 = self.get_object(id)
-        serializer = Example1Serializers(example1)
-        return Response(serializer.data)
+        if example1 == 404:
+            return Response("No Hay Datos")
+        else:
+            serializer = Example1Serializers(example1)
+            return Response(serializer.data)
+        
+    def put(self, request, id, format = None):
+        try:
+            example = Example1.objects.get(pk = id)
+        except Example1.DoesNotExist:
+            return 404
+        
+        example2 = self.get_object(id)
+        serializer = Example1Serializers(example2, data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 """class ExampleDetail(APIView):
     def get_object(self,id):
